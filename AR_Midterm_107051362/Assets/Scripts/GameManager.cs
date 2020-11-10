@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public float turn;
     [Header("縮放速度"), Range(0.01f, 10f)]
     public float scaleSpeed;
-
+    [Header("縮放最大最小值")]
+    public float min;
+    public float max;
     //動畫
     Animator knight01Anim;
     Animator knight02Anim;
@@ -35,8 +37,9 @@ public class GameManager : MonoBehaviour
 
 
         knight01.localScale += new Vector3(1, 1, 1) * joystick.Vertical * scaleSpeed;
+        knight01.localScale=new Vector3(1,1,1)*Mathf.Clamp(knight01.localScale.x,min,max);
         knight02.localScale += new Vector3(1, 1, 1) * joystick.Vertical * scaleSpeed;
-
+        knight02.localScale=new Vector3(1,1,1)*Mathf.Clamp(knight02.localScale.x,min,max);
     }
     public void attackAnim()
     {
